@@ -16,25 +16,25 @@
 
 ### General
 
-#### <View>
+#### `<View>`
 
 https://facebook.github.io/react-native/docs/view.html
 
 The "default" component, like an HTML `<div>`.
 
-#### <Text>
+#### `<Text>`
 
 https://facebook.github.io/react-native/docs/text.html
 
 All text needs to be wrapped in a `<Text>`.
 
-#### <ScrollView>
+#### `<ScrollView>`
 
 https://facebook.github.io/react-native/docs/scrollview.html
 
 A component that makes it easy to scroll through its content.
 
-#### <Image>
+#### `<Image>`
 
 https://facebook.github.io/react-native/docs/image.html
 
@@ -47,7 +47,7 @@ Used to display images, which are provided through the `source` prop. This can b
 
 ### Lists
 
-#### <FlatList>
+#### `<FlatList>`
 
 https://facebook.github.io/react-native/docs/flatlist.html
 
@@ -75,7 +75,7 @@ The `renderItem` prop is a function that returns a React element for item datum.
 />
 ```
 
-#### <SectionList>
+#### `<SectionList>`
 
 https://facebook.github.io/react-native/docs/sectionlist.html
 
@@ -90,7 +90,7 @@ This is like a `<FlatList>`, but breaks the data into sections, each of which ha
 />
 ```
 
-#### <RefreshControl>
+#### `<RefreshControl>`
 
 https://facebook.github.io/react-native/docs/refreshcontrol.html
 
@@ -105,19 +105,19 @@ https://facebook.github.io/react-native/docs/textinput.html
 Used to get user input. Use the `onChangeText` to update state when the user types.
 
 
-#### <Picker>
+#### `<Picker>`
 
 https://facebook.github.io/react-native/docs/picker.html
 
 Useful for picking an item from a list, but style customization is minimal.
 
-#### <Slider>
+#### `<Slider>`
 
 https://facebook.github.io/react-native/docs/slider.html
 
 Pick a value from a range.
 
-#### <Switch>
+#### `<Switch>`
 
 https://facebook.github.io/react-native/docs/switch.html
 
@@ -125,19 +125,19 @@ Toggle choices
 
 ### Buttons
 
-#### <Button>
+#### `<Button>`
 
 https://facebook.github.io/react-native/docs/button.html
 
 A pre-styled button based on the OS.
 
-#### <TouchableHighlight>
+#### `<TouchableHighlight>`
 
 https://facebook.github.io/react-native/docs/touchablehighlight.html
 
 A button that will "highlight" (show its `underlay` color) while being pressed.
 
-#### <TouchableOpacity>
+#### `<TouchableOpacity>`
 
 https://facebook.github.io/react-native/docs/touchableopacity.html
 
@@ -145,39 +145,39 @@ A button that becomes opaque when pressed.
 
 ### Misc
 
-#### <StatusBar>
+#### `<StatusBar>`
 
 https://facebook.github.io/react-native/docs/statusbar.html
 
 This affects rendering around the status bar at the top of the app. The `translucent` prop should only be used if you want to draw underneath the status bar.
 
-#### <ActivityIndicator>
+#### `<ActivityIndicator>`
 
 https://facebook.github.io/react-native/docs/activityindicator.html
 
 This is a loading icon
 
 
-#### <DrawerLayoutAndroid>
+#### `<DrawerLayoutAndroid>`
 
 https://facebook.github.io/react-native/docs/drawerlayoutandroid.html
 
 This slides out content from the side. Could be useful for placing navigation links.
 
 
-#### <KeyboardAvoidingView>
+#### `<KeyboardAvoidingView>`
 
 https://facebook.github.io/react-native/docs/keyboardavoidingview.html
 
 This squishes itself when the keyboard is opened.
 
-#### <Modal>
+#### `<Modal>`
 
 https://facebook.github.io/react-native/docs/modal.html
 
 Render content above other content.
 
-#### <WebView>
+#### `<WebView>`
 
 https://facebook.github.io/react-native/docs/webview.html
 
