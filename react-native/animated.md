@@ -19,7 +19,7 @@ const vector = new Animated.valueXY({ x: 0, y: 0 });
 There are three ways that the value is updated:
 
 1. The `value.animate()` method. This method is called internally by the `spring`, `timing`, and `decay` methods to transition between values. It gets passed an `Animation`, which it starts. The `Animation` receives an `onUpdate` callback, which will update the `value`'s value. `onUpdate` is only called for JS animations; native animations will handle updates internally.
-2. The `value.setValue()` method. This is a convenient way to set a starting value before beginning an animation.
+2. The `value.setValue()` method. This can be used to set a value at any time, but is especially convenient for setting a starting value before beginning an animation.
 3. Through a native event emitted listening for `onAnimatedValueUpdate` events.
 
 ### `value.interpolate()`
@@ -47,6 +47,8 @@ value.addListener(e => this.setState({ x: e.value }));
 Animations start with an initial value (a number) and animate to something. This is usually to another value (i.e. to an `Animated.value`), but can also be velocity based.
 
 Animations can be started and stopped. Once an animation has been stopped, it cannot be restarted.
+
+**Note:** Don't forget to call the `animation.start()`!
 
 ### Types
 
@@ -170,3 +172,91 @@ When a value node is updated (i.e. by an animation), it receives a `flush` value
 ## Native vs JS Animations
 
 https://facebook.github.io/react-native/blog/2017/02/14/using-native-driver-for-animated.html#caveats
+
+## PanResponder
+
+https://facebook.github.io/react-native/docs/panresponder.html
+
+The `PanResponder` is a responder that lets you react to streams of events (gestures). (The `<Touchable___>` components implement responders, but without gestures.)
+
+A pan responder is created using `PanResponder.create()`. It receives an object with configuration functions.
+
+### Configuration functions
+
+
+```js
+PanResponder.create({
+  /*
+   * There can be multiple pan responders in a page, so a component that implements a
+   * pan responder needs to specify when it should be active. This may either be done at
+   * the start of a touch or when a touch moves onto a component (letting it "take over"
+   * the gesture).
+   * 
+   * These methods can either be called during an event's capture phase:
+   */
+   onStartShouldSetResponderCapture: () => true,
+   onMoveShouldSetResponderCapture: () => true,
+  /*
+   *   
+   * or during its bubble phase
+   */
+  onStartShouldSetResponder: () => true,
+  onMoveShouldSetResponder: () => true,
+  /*
+   * Typically, you would use the bubble functions, but the capture functions are useful
+   * if a parent wants to ensure it becomes the pan responder before any children
+   * can claim the role.
+   */
+
+  /*
+   * While a component may try to become the active pan responder, some other component may
+   * get the role instead.
+   */
+
+  // called when a component successfully becomes the pan responder
+  onPanResponderGrant: () => {},
+  // called when the component doesn't not become the pan responder
+  onPanResponderReject: () => {},
+
+  /*
+   * Once a component becomes a pan responder, there are a few functions that it may call.
+   */
+
+  // called at the start of a gesture event
+  onPanResponderStart: () => {},
+  // called every time the gesture moves
+  onPanResponderMove: () => {},
+  // called when the gesture ends (finger leaves devices)
+  onPanResponderRelease: () => {},
+  // called when another component becomes the pan responder.
+  onPanResponderTerminate: () => {},
+  // A component can also allow/prevent itself to be removed as the pan responder
+  // where returnin gtrue allows and false prevents
+  onPanResponderTerminationRequest: () => true
+});
+```
+
+All of the method properties passed to `PanResponder.create()` will receive two arguments. The first is a React Native event, which provides information about the latest event. The second is a gesture state, which provides information about the accumulated gesture (how far the gesture has moved, the velocity of the gesture, the current position and where the gesture started).
+
+`onPanResponderMove` can be paired with `Animated.event` to move a component while a gesture is taking place. `Animated.event` will call `setValue` for `Animated.Value`s using event/gesture state values. However, I find this to be a bit convoluted and doing this manually is simple.
+
+```js
+onPanResponderMove: Animated.event([
+  // set values based on the event
+  {
+    nativeEvent: {
+      // keys are Animated.Values
+      locationX: this.xValue
+    }
+  },
+  // set values based on the gesture state
+  {
+    vx: this.xVelocity
+  }
+])
+
+onPanResponderMove: (event, gesture) {
+  this.xValue.setValue(event.locationX);
+  this.xVelocity.setValue(gesture.vx);
+}
+```
