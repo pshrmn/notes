@@ -48,7 +48,7 @@ Animations start with an initial value (a number) and animate to something. This
 
 Animations can be started and stopped. Once an animation has been stopped, it cannot be restarted.
 
-**Note:** Don't forget to call the `animation.start()`!
+**Note: Don't forget to call the `animation.start()`!**
 
 ### Types
 
@@ -138,7 +138,7 @@ class Bouncer extends React.Component {
     Animated.timing(this.value, {
       toValue: 3,
       duration: 2000
-    });
+    }).start();
   }
 
   render() {
