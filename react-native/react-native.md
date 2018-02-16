@@ -12,6 +12,8 @@
 * [layout props](https://facebook.github.io/react-native/docs/layout-props.html)
 * [shadow props](https://facebook.github.io/react-native/docs/shadow-props.html)
 
+Everything has `relative` position by default. This means that `absolute` positioning will not render an element above its siblings. Instead, any elements that should appear on top of others should be rendered after their siblings.
+
 ## Components
 
 ### General
