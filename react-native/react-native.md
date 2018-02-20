@@ -14,6 +14,13 @@
 
 Everything has `relative` position by default. This means that `absolute` positioning will not render an element above its siblings. Instead, any elements that should appear on top of others should be rendered after their siblings.
 
+### Networking
+
+For local networking (when attached to device via USB), use `adb` to let the device access `localhost`.
+```bash
+adb reverse tcp:{PORT} tcp:{PORT}
+```
+
 ## Components
 
 ### General
