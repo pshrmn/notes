@@ -13,16 +13,16 @@ npm install apollo-link-http
 // react integration
 npm install react-apollo
 
-//
+// turn strings into graphql queries
 npm install graphql-tag
 
-// 
+// core graphql
 npm install graphql
 ```
 
 ## Packages
 
-### `apollo-client``
+### `apollo-client`
 
 ```js
 import { ApolloClient } from 'apollo-client';
