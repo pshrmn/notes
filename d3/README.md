@@ -1,6 +1,7 @@
 # D3
 
 * [Intro](intro.md)
+* [Terminology](terminology.md)
 * [`<canvas>` Overview](canvas.md)
 * [`<svg>` Overview](svg.md)
 
