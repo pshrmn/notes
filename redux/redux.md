@@ -23,7 +23,7 @@ Redux manages the state of an app using a single store. To modify the state, an 
 ## Installation
 
 ```bash
-npm install --save redux</code></pre>
+npm install --save redux
 ```
 
 ## Actions
@@ -268,5 +268,5 @@ store.dispatch({
 store.dispatch({
   type: "UNKNOWN"
 });
-// store = 10</code></pre>
+// store = 10
 ```
