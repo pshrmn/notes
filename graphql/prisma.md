@@ -62,6 +62,25 @@ prisma delete
 
 You may need to include the Prisma secret in your `prisma.yml`. `graphql create` creates a generic secret in the `.env` file, so you can import it in the `prisma.yml`, but you should also change it to something more secure (random).
 
+When using a secret, the `GraphQlServer` should also include the secret.
+
+```js
+const server = new GraphQLServer({
+  typeDefs: './src/schema.graphql',
+  resolvers,
+  context: req => ({
+    ...req,
+    db: new Prisma({
+      endpoint: process.env.PRISMA_ENDPOINT,
+      debug: true,
+      secret: process.env.PRISMA_SECRET, // !!!!
+    }),
+  }),
+});
+```
+
+#### TypeScript
+
 For TypeScript projects, a `graphql codegen` call should be added to the post-deploy hooks so that the TypeScript definitions are correctly generated after a deploy.
 
 ```bash
