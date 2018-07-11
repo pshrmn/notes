@@ -187,13 +187,14 @@ input DogInput {
 ```
 
 ```js
-// resolvers receive three arguments:
+// resolvers receive four arguments:
 // 1. obj is the previous object (one level up, not old)
 // 2. args are arguments provided in the field's query
 // 3. context extra, useful data
+// 4. info about query's execution state (use rarely)
 {
   Query: {
-    dog(obj, args, context) {
+    dog(obj, args, context, info) {
       return api.getDog(args.id).then(data => {
         return new Dog(data);
       });
@@ -441,6 +442,27 @@ query {
   }
 }
 ```
+
+### Custom Directives
+
+While GraphQL includes the `@skip` and `@include` directives, it is possible to write your own as well.
+
+The exact implementation varies by GraphQL framework.
+
+When defining a directive in a schema, it requires a name and what it can be added to (fields, types, etc.). The directive can also take arguments.
+
+```bash
+directive @yo(
+ arg: String = "default value"
+) on FIELD_DEFINTION
+
+query {
+  dog {
+    name @yo
+  }
+}
+```
+
 
 ## Mutations
 
