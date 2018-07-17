@@ -194,15 +194,17 @@ const ApolloThing = graphql(gql`mutate updateThing(...){ ... }`, {
 
 The `update` property of `mutate` is used to update the `cache`.
 
+**Note:** If you try to update a query that has not been run yet, you will get an error. This can be mitigated by checking that the root query (cache.data.data.ROOT_QUERY) and the query you want to run (cache.data.data.ROOT_QUERY.<query_name>) exist. Alternatively, `refetchQueries` can be used to refetch the entire query.
+
 ```js
 const ApolloThing = graphql(gql`mutate updateThing(...){ ... }`, {
   props: ({ mutate }) => ({
     click: arg => mutate({
       variables: { one: arg },
-      update: (proxy, { data: { updateThing } }) => {
+      update: (cache, { data: { updateThing } }) => {
         const data = proxy.readQuery({ query: QueryThing });
         data.thing = updateThing;
-        proxy.writeQuery({ query: QueryThing, data });
+        cache.writeQuery({ query: QueryThing, data });
       }
     })
   })
