@@ -87,12 +87,77 @@ ReactDOM.render((
 ), holder);
 ```
 
-#### graphql()
+#### <Query>
 
-A high-order component factory; this function takes a GraphQL query and returns a function to create a higher-order component. That function takes a React component that you want to inject Apollo/GraphQL props into.
+A component that uses a render-invoked function to render the data for a GraphQL query. `children()`, the render-invoked function, receives an object with `data`, `loading`, and `error` properties to determine what to render.
 
 ```jsx
-import { graphql } from 'react-apollo';
+import { Query } from "react-apollo";
+
+<Query query={SOME_QUERY}>
+  {({ loading, data, error }) => (
+    loading
+      ? <div>loading...</div>
+      : <div>{data.someQuery.title}</div>
+  )}
+</Query>
+```
+
+#### <Mutation>
+
+A component that uses a render-invoked function to call and track the same of a GraphQL mutation. `children()`, the render-invoked function, receives the mutation function and an object with `data`, `loading`, and `error` properties.
+
+```jsx
+import { Mutation } from "react-apollo";
+
+<Mutation mutation={SOME_MUTATION}>
+  {(mutate, { data, error, loading }) => (
+    <div>
+      <button
+        onClick={e => {
+          mutate();
+        }}
+      >
+        Submit
+      </button>
+    </div>
+  )}
+</Mutation>
+```
+
+In order to call the mutation outside of an inline function, the arguments from the `<Mutation>`'s render-invoked `children()` function can be passed to another component.
+
+```jsx
+class Mutant extends React.Component {
+  submit = () => {
+    this.props.submit({ variables: {...} });
+  }
+
+  render() {
+    if (this.props.result.loading) {
+      return <div>loading...</div>;
+    }
+    // ...
+  }
+}
+
+export default () => (
+  <Mutation mutation={SOME_MUTATION}>
+    {(submit, result) => (
+      <Mutatnt submit={submit} result={result} />
+    )}
+  </Mutation>
+)
+```
+
+#### graphql()
+
+A high-order component factory; this function takes a GraphQL query and returns a function to create a higher-order component (HOC). That function takes a React component that you want to inject Apollo/GraphQL props into.
+
+**Note:** This was a precursor to the `<Query>` and `<Mutation>` components, which are generally preferable to using the `graphql()` HOC.
+
+```jsx
+import { graphql } from "react-apollo";
 
 const ApolloAware = graphql(gql`query { test }`)(MyComponent);
 ```
