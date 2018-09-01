@@ -194,6 +194,12 @@ git remote rm <name>
 
 Removes the reference to a remote repository
 
+```bash
+git remote prune origin
+```
+
+Remove remote branch references
+
 ### fetch
 
 ```bash
