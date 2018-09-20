@@ -71,7 +71,7 @@ return oldState;
 
 #### Action
 
-The second argument to a reduer function is the action that was dispatched to the store. The current state should be updated based on the type of the action and any additional properties of the action. The easiest way to handle the various action types is by using a switch statement for the known types, and a default case that returns the current state for unknown types.
+The second argument to a reducer function is the action that was dispatched to the store. The current state should be updated based on the type of the action and any additional properties of the action. The easiest way to handle the various action types is by using a switch statement for the known types, and a default case that returns the current state for unknown types.
 
 
 ### Splitting Reducers
