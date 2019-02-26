@@ -13,7 +13,7 @@ Middleware provides a way to interact with actions that have been dispatched to 
 
 Middleware is used by composing the functions together and passing that function to your createStore call. The composed middleware function is used to replace the store's default dispatch method with one that dispatches the action to each middleware function in a chain, with the last middleware function dispatching the action to the store.
 
-Read a brief explantion of function composition [here](https://github.com/pshrmn/notes/tree/master/functional-proramming/compose.md").
+Read a brief explantion of function composition [here](https://github.com/pshrmn/notes/blob/master/functional-programming/compose.md).
 
 
 ```js
