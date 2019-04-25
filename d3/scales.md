@@ -161,7 +161,6 @@ import { scaleThreshold } from 'd3-scale';
 const threshold = scaleThreshold()
   .domain([0.025, 0.16, 0.84, 0.975])
   .range(['lowest', 'low', 'average', 'high', 'highest']);
-    </code></pre>
 ```
 
 ## The Time Scales
