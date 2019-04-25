@@ -83,7 +83,7 @@ settings
 + - production.py
 ```
 
-Any settings that should be shared across environments can be kept in the `base.py` module. Then, in your `dev/production` modules, you can import the base settings (<code class="language-python">from .base import *</code>) and specify other settings that are only relevant to that environment.
+Any settings that should be shared across environments can be kept in the `base.py` module. Then, in your `dev/production` modules, you can import the base settings (`from .base import *`) and specify other settings that are only relevant to that environment.
 
 When developing locally, you can either specify an environment variable to indicate that the dev settings module should be used or edit `manage.py` to hardcode the dev settings module as the default settings module.
 

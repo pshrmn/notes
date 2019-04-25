@@ -20,7 +20,7 @@ If you ever need to refer to the User model that your project is using, you can 
 from django.conf import settings
 
 class Dog(models.Model):
-  
+
     name = models.CharField()
     human = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -33,7 +33,7 @@ class Dog(models.Model):
 The `AUTH_PASSWORD_VALIDATORS` settings is used to specify which password validators should be used when registering an account.
 
 
-Django provides a number of password validators to set restrictions on password values. These are:      
+Django provides a number of password validators to set restrictions on password values. These are:
 
 * `UserAttributeSimilarityValidator` checks if the user's password is similar to their username, first name, last name, or email using difflib's SequenceMatcher.
 * `MinimumLengthValidator` enforces a minimum password length.
@@ -107,7 +107,7 @@ if you are using it.
 """
 AUTH_USER_MODEL = 'auth.User'
 ```
-  
+
 ### Built-in User Model
 
 The default User model extends the AbstractUser model. The AbstractUser model extends the AbstractBaseUser and PermissionsMixin models.
@@ -194,7 +194,7 @@ built-in User is a username and password.
 """
 from django.contrib.auth.forms import AuthenticationForm
 ```
-   
+
 #### Updating Users
 ```python
 """
@@ -207,7 +207,7 @@ class UpdateUserForm(ModelForm):
     class Meta:
         fields = ['first_name', 'last_name']
 ```
-   
+
 #### Forms In Views
 ```python
 """
@@ -255,14 +255,13 @@ For a full example of a custom user, check out this [example](https://docs.djang
 You need to identify your auth model in your settings.
 """
 AUTH_USER_MODEL = 'custom.CustomUser'
-    </code></pre>
-  </div>
-  <div id="custom-models">
-    <h3>Custom User Model</h3>
+```
 
-    <div>
-      <h4>Model</h4>
-      <pre><code class="language-python">
+### Custom User Model
+
+#### Model
+
+```python
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 
@@ -319,7 +318,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     from AbstractBaseUser, including:
     """
     # Checks if the user is logged in, always returns True.
-    # (an AnonymousUser's is_authenticated method returns False). 
+    # (an AnonymousUser's is_authenticated method returns False).
     def is_authenticated(self):
         return True
 
@@ -343,7 +342,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def has_perm(self, perm, obj=None):
         # ...
 ```
-   
+
 #### Manager
 ```python
 """
@@ -362,7 +361,7 @@ from django.contrib.auth.models import BaseUserManager
 class CustomUserManager(BaseUserManager):
 
     use_in_migrations = True
-  
+
     """
     create_user will be used when creating a regular user
     """
@@ -422,7 +421,7 @@ class CustomUserChangeForm(forms.ModelForm):
         model = CustomUser
         fields = ('email', 'name')
 ```
-  
+
 ### Custom User Admin
 ```python
 """

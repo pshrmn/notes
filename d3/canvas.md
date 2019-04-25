@@ -3,7 +3,7 @@
 Just like a physical canvas, the HTML `<canvas>` element is made to be drawn on. The drawing on a `<canvas>` is done using a context object, unlike an `<svg>`, which uses nested elements. Still, the `<canvas>` does not use a self-closing tag. This allows for any text or elements placed inside of the canvas element to be rendered when the browser cannot render the canvas.
 
 ```html
-  <canvas>This only displays if the browser cannot render a canvas</canvas>
+<canvas>This only displays if the browser cannot render a canvas</canvas>
 ```
 
 In order to draw on a canvas, you need a context object. You get a context by calling the `getContext` method on the `<canvas>` element. The context that you will probably want is `'2d'`, but a `'webgl'` context also exists for three dimensional drawing. A context object has a number of methods that determine where and how to draw pixels on the canvas. It has also style values that can be set to change what the drawn pixels look like (for both its fill and stroke) and transformation values that affect the placement of the shapes.

@@ -24,11 +24,11 @@ import { format } from 'd3-format';
 // Use a comma as a thousands separator
 const commas = format(',');
 const millions = commas(1234567);
-// millions = '1,234,567'</code></pre>
+// millions = '1,234,567'
 ```
 
 #### Positive/Negative
-    
+
 ```js
 // Use a plus sign to show a +/- in front of positive/negative numbers
 const signed = format('+');
@@ -63,7 +63,7 @@ const output = five(23);
 ```
 
 #### Integer
-    
+
 ```js
 // Use a zero after the decimal point to specify that output should
 // be an integer. This will round the number up or down.
@@ -101,7 +101,7 @@ const y = year(date);
 
 
 #### parse
-    
+
 A time formatter can work in reverse to return a date
 
 ```js
