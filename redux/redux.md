@@ -143,7 +143,7 @@ const rootReducer = combineReducers({
 
 ## Store
 
-A store is create by passing it a reducer function. It can also take an optional initialState value and an enhancer function.
+A store is created by passing it a reducer function. It can also take an optional initialState value and an enhancer function.
 
 ### `createStore(reducer, initialState, enhancer)`
 
