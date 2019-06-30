@@ -136,7 +136,7 @@ type Dog implements Animal {
 type Cat implements Animal {
   id: ID!
   name: String!
-  live: Int!
+  lives: Int!
 }
 
 # interfaces can be the type for a field
@@ -226,14 +226,15 @@ query {
 ```
 
 ```bash
-# a query get data
+# a query gets data
 # the query specifies the shape of the data it wants
 query {
   dog {
     breed
   }
 }
-# returns object with data property of same shape
+# the returned object has properties of the same shape
+# as the query
 {
   data: {
     dog: {
@@ -412,7 +413,24 @@ query DogData($name: String = "Terra") {
     ...
   }
 }
+```
 
+### Meta
+
+```bash
+query {
+  dog {
+    # __typename returns an object's type
+    # this is useful for queries that can return
+    # multiple types
+    __typename
+  }
+}
+```
+
+### Directives
+
+```bash
 # directives can be used to control whether
 # part of a query is included
 query DogData($name: String!, $andFriends: Boolean!, $withAge: Boolean!) {
@@ -430,20 +448,7 @@ query DogData($name: String!, $andFriends: Boolean!, $withAge: Boolean!) {
 }
 ```
 
-### Meta
-
-```bash
-query {
-  dog {
-    # __typename returns an object's type
-    # this is useful for queries that can return
-    # multiple types
-    __typename
-  }
-}
-```
-
-### Custom Directives
+#### Custom Directives
 
 While GraphQL includes the `@skip` and `@include` directives, it is possible to write your own as well.
 
