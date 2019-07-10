@@ -192,7 +192,7 @@ store.dispatch({
 Enhancers "enhance" the Redux store by adding extra functionality to the store when you call createStore.
 
 
-Enhancers are created by composing functions together and passing composed function the createStore method. Read a brief explantion of function composition [here](https://github.com/pshrmn/notes/tree/master/functional-proramming/compose.md").
+Enhancers are created by composing functions together and passing composed function the createStore method. Read a brief explantion of function composition [here](https://github.com/pshrmn/notes/tree/master/functional-programming/compose.md).
 
 
 ### Middleware
