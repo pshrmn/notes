@@ -200,7 +200,7 @@ class DumbComponent extend React.Component {
   actions         // functions that return actions
   +-- index.js
   |
-  components      // dump components
+  components      // dumb components
   +-- parent.js
   +-- child.js
   |
