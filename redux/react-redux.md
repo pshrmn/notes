@@ -158,7 +158,7 @@ class SmartComponent extends React.Component {
 
 #### `bindActionCreators`
 
-React Redux provides a shortcut function called `bindActionCreators` to simplify dispatching actions. `bindActionCreators` maps action functions to an object using the names of the action functions. These functions automatically dispatch the action to the store when the function is called. This is especially useful for passing action functions to dumb components.
+Redux provides a shortcut function called `bindActionCreators` to simplify dispatching actions. `bindActionCreators` maps action functions to an object using the names of the action functions. These functions automatically dispatch the action to the store when the function is called. This is especially useful for passing action functions to dumb components.
 
 ```jsx
 // from "actions" module
@@ -171,11 +171,15 @@ const ActionFns = {
 };
 
 class SmartComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.actions = bindActionCreators(ActionFns, props.dispatch);
+  }
+    
   render() {
-    const actions = bindActionCreators(ActionFns, this.props.dispatch);
     return (
       <SmartComponent>
-        <DumbComponent add={actions.addNumber} />
+        <DumbComponent add={this.actions.addNumber} />
       </SmartComponent>
     );
   }
@@ -273,12 +277,16 @@ import * as MathActions from "../actions";
 import Calculator from "../components/calculator"
 
 class App extends React.Component {
-  render() {
-    const { value, dispatch } = this.props;
+  constructor(props) {
+    super(props);
     // bind the action creators to automatically dispatch the actions
-    const actions = bindActionCreators(MathActions, dispatch);
+    this.actions = bindActionCreators(MathActions, props.dispatch);
+  }
+  
+  render() {
+    const { value } = this.props;
     return (
-      <Calculator actions={actions} value={value} />
+      <Calculator actions={this.actions} value={value} />
     );
   }
 }
